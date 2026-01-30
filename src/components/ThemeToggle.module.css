@@ -1,0 +1,19 @@
+.toggle {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.toggle:hover {
+    background: var(--glass-shine);
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    transform: rotate(15deg);
+}

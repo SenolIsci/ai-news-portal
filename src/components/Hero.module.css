@@ -1,0 +1,180 @@
+.hero {
+    position: relative;
+    min-height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 100px 24px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    width: 100%;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.description {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0;
+    border-top: 2px solid var(--accent);
+    padding-top: 12px;
+}
+
+.ctaGroup {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.primaryBtn {
+    padding: 18px 48px;
+    background: var(--accent-cyan);
+    color: #000;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.primaryBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.primaryBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--accent-cyan);
+}
+
+.primaryBtn:hover::before {
+    opacity: 0.3;
+}
+
+.secondaryBtn {
+    padding: 18px 48px;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+.secondaryBtn:hover {
+    border-color: var(--accent-purple);
+    background: rgba(188, 19, 254, 0.1);
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+    transform: translateY(-2px);
+}
+
+.backgroundElements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+    animation: float 10s infinite ease-in-out;
+}
+
+.orb1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent-purple);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.orb2 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-cyan);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: -5s;
+}
+
+.grid {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(800px) rotateX(60deg);
+    opacity: 0.3;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        transform: perspective(800px) rotateX(60deg) translateY(0);
+    }
+
+    100% {
+        transform: perspective(800px) rotateX(60deg) translateY(60px);
+    }
+}
+
+@media (max-width: 768px) {
+    .ctaGroup {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .primaryBtn,
+    .secondaryBtn {
+        width: 100%;
+    }
+}

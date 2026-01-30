@@ -1,0 +1,124 @@
+.contentLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    flex: 1;
+}
+
+.card {
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-primary);
+    background: var(--bg-card);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: auto;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.card:hover .image {
+    transform: scale(1.05);
+}
+
+.content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: 1.4rem;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 400;
+    font-family: var(--font-heading);
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.excerpt {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 16px 0 24px;
+    line-height: 1.5;
+    font-family: var(--font-serif);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-primary);
+    padding-top: 16px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.cardFooterArea {
+    padding: 0 24px 24px;
+}
+
+.readMore {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
+}
+
+.readMore:hover {
+    color: var(--accent);
+    gap: 8px;
+}
