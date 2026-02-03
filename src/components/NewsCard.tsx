@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import NewsImage from './NewsImage';
 import Link from 'next/link';
 import { ArrowRight, Clock } from 'lucide-react';
 import styles from './NewsCard.module.css';
@@ -23,11 +23,10 @@ export default function NewsCard({ id, title, category, excerpt, image, date, ex
                     <div className={styles.cardHeader}>
                         <h3 className={styles.title}>{title}</h3>
                         <div className={styles.imageWrapper}>
-                            <img
+                            <NewsImage
                                 src={image}
                                 alt={title}
                                 className={styles.image}
-                                loading="lazy"
                             />
                         </div>
                     </div>

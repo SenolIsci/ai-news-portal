@@ -1,3 +1,4 @@
+import NewsImage from '@/components/NewsImage';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Clock, Calendar } from 'lucide-react';
 import styles from './news.module.css';
@@ -56,7 +57,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
             <article className={styles.article}>
                 <div className={styles.imageContainer}>
-                    <img
+                    <NewsImage
                         src={news.thumbnail}
                         alt={news.title}
                         className={styles.image}
