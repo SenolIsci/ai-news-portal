@@ -3,22 +3,7 @@
 import { useEffect, useState } from 'react';
 import NewsCard from './NewsCard';
 import styles from './NewsFeed.module.css';
-
-const API_URL = 'https://unsprained-frightfully-amani.ngrok-free.dev/webhook/87f5f117-d5c9-49ec-9df6-eadcc82012d0';
-
-interface NewsItem {
-    row_number: number;
-    position: number;
-    title: string;
-    link: string;
-    domain: string;
-    source: string;
-    date: string;
-    date_utc: string;
-    snippet: string;
-    thumbnail: string;
-    block_position: number;
-}
+import type { NewsItem } from '@/utils/googleSheets';
 
 interface NewsFeedProps {
     initialNews?: NewsItem[];
@@ -35,27 +20,17 @@ export default function NewsFeed({ initialNews = [] }: NewsFeedProps) {
         const fetchNews = async () => {
             try {
                 if (news.length === 0) setLoading(true);
-                const response = await fetch(API_URL, {
-                    headers: {
-                        'ngrok-skip-browser-warning': 'true'
-                    }
-                });
+                const response = await fetch('/api/news');
 
                 if (!response.ok) {
-                    throw new Error('An error occurred while loading news');
+                    throw new Error('Failed to fetch latest news');
                 }
 
                 const data = await response.json();
 
-                if (Array.isArray(data)) {
+                if (Array.isArray(data) && data.length > 0) {
                     setNews([...data].reverse());
                     setError(null);
-                } else if (data && typeof data === 'object') {
-                    const newsItem = data as any;
-                    if (newsItem.row_number || newsItem.title) {
-                        setNews([newsItem]);
-                        setError(null);
-                    }
                 }
             } catch (err) {
                 if (news.length === 0) {
