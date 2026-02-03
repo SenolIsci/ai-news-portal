@@ -4,6 +4,8 @@ import NewsFeed from '@/components/NewsFeed';
 import Footer from '@/components/Footer';
 import { fetchGoogleSheetData } from '@/utils/googleSheets';
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function Home() {
   const news = await fetchGoogleSheetData();
 

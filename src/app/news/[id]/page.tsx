@@ -5,6 +5,8 @@ import styles from './news.module.css';
 
 import { fetchGoogleSheetData } from '@/utils/googleSheets';
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 interface Props {
     params: Promise<{ id: string }>;
 }
