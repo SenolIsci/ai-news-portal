@@ -2,6 +2,7 @@ import NewsImage from './NewsImage';
 import Link from 'next/link';
 import { ArrowRight, Clock } from 'lucide-react';
 import styles from './NewsCard.module.css';
+import { formatRelativeTime } from '@/utils/dateUtils';
 
 interface NewsCardProps {
     id: number;
@@ -10,10 +11,12 @@ interface NewsCardProps {
     excerpt: string;
     image: string;
     date: string;
+    dateUtc?: string;
     externalLink: string;
 }
 
-export default function NewsCard({ id, title, category, excerpt, image, date, externalLink }: NewsCardProps) {
+export default function NewsCard({ id, title, category, excerpt, image, date, dateUtc, externalLink }: NewsCardProps) {
+    const displayDate = dateUtc ? formatRelativeTime(dateUtc) : date;
     return (
         <article className={styles.card}>
             <Link href={`/news/${id}`} className={styles.contentLink}>
@@ -39,7 +42,7 @@ export default function NewsCard({ id, title, category, excerpt, image, date, ex
                 <div className={styles.footer}>
                     <div className="flex items-center gap-2">
                         <Clock size={14} />
-                        <span>{date}</span>
+                        <span>{displayDate}</span>
                     </div>
                     <a
                         href={externalLink}

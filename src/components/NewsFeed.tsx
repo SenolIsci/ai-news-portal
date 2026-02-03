@@ -107,6 +107,7 @@ export default function NewsFeed({ initialNews = [] }: NewsFeedProps) {
                             excerpt={item.snippet}
                             image={item.thumbnail}
                             date={item.date}
+                            dateUtc={item.date_utc}
                             externalLink={item.link}
                         />
                     ))}

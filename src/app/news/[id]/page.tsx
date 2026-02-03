@@ -36,6 +36,8 @@ async function getNewsItem(id: string) {
     }
 }
 
+import { formatRelativeTime } from '@/utils/dateUtils';
+
 export default async function NewsDetailPage({ params }: Props) {
     const { id } = await params;
     const news = await getNewsItem(id);
@@ -47,6 +49,8 @@ export default async function NewsDetailPage({ params }: Props) {
             </div>
         );
     }
+
+    const relativeTime = news.date_utc ? formatRelativeTime(news.date_utc) : news.date;
 
     return (
         <div className={styles.container}>
@@ -69,7 +73,7 @@ export default async function NewsDetailPage({ params }: Props) {
                         <span className={styles.source}>{news.source}</span>
                         <div className={styles.metaInfo}>
                             <Clock size={16} />
-                            <span>{news.date}</span>
+                            <span>{relativeTime}</span>
                         </div>
                         {news.date_utc && (
                             <div className={styles.metaInfo}>
