@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Clock, Calendar } from 'lucide-react';
 import styles from './news.module.css';
 
-const API_URL = 'https://unsprained-frightfully-amani.ngrok-free.dev/webhook/87f5f117-d5c9-49ec-9df6-eadcc82012d0';
+import { fetchGoogleSheetData } from '@/utils/googleSheets';
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -11,23 +11,11 @@ interface Props {
 
 async function getNewsItem(id: string) {
     try {
-        const response = await fetch(API_URL, {
-            headers: {
-                'ngrok-skip-browser-warning': 'true'
-            },
-            next: { revalidate: 60 } // Match homepage revalidation
-        });
-        if (!response.ok) return null;
-
-        const data = await response.json();
+        const data = await fetchGoogleSheetData();
 
         if (Array.isArray(data)) {
-            return data.find((item: any) => (item.row_number || item.id || item.Id)?.toString() === id) || null;
-        } else if (data && typeof data === 'object') {
-            const item = data as any;
-            if ((item.row_number || item.id || item.Id)?.toString() === id) {
-                return item;
-            }
+            // Find by row_number (which is what we use as ID in the cards)
+            return data.find((item: any) => item.row_number.toString() === id) || null;
         }
         return null;
     } catch (err) {
